@@ -12,28 +12,28 @@ export class UserResolver {
   async createUser(
     @Args('createUserInput') createUserInput: CreateUserInput,
   ): Promise<User> {
-    return this.userService.create(createUserInput);
+    return await this.userService.create(createUserInput);
   }
 
   @Mutation(() => User)
   async updateUser(
     @Args('updateUserInput') updateUserInput: UpdateUserInput,
   ): Promise<User> {
-    return this.userService.update(updateUserInput);
+    return await this.userService.update(updateUserInput);
   }
 
   @Mutation(() => User)
   async removeUser(@Args('id', { type: () => Int }) id: number): Promise<User> {
-    return this.userService.remove(id);
+    return await this.userService.remove(id);
   }
 
   @Query(() => [User], { name: 'users' })
   async findAll(): Promise<User[]> {
-    return this.userService.findAll();
+    return await this.userService.findAll();
   }
 
   @Query(() => User, { name: 'user' })
   async findOne(@Args('id', { type: () => Int }) id: number): Promise<User> {
-    return this.userService.findOne(id);
+    return await this.userService.findOne(id);
   }
 }

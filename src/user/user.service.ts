@@ -9,11 +9,11 @@ export class UserService {
   constructor(private prisma: PrismaService) {}
 
   async create(createUserInput: CreateUserInput): Promise<User> {
-    return this.prisma.user.create({ data: createUserInput });
+    return await this.prisma.user.create({ data: createUserInput });
   }
 
   async findAll(): Promise<User[]> {
-    return this.prisma.user.findMany();
+    return await this.prisma.user.findMany();
   }
 
   async findOne(id: number): Promise<User> {
@@ -33,6 +33,6 @@ export class UserService {
   }
 
   async remove(id: number): Promise<User> {
-    return this.prisma.user.delete({ where: { id } });
+    return await this.prisma.user.delete({ where: { id } });
   }
 }
